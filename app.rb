@@ -9,7 +9,7 @@ set :public_folder, File.dirname(__FILE__) + '/publics'
 # set :database, "sqlite3:fishbook.sqlite3"
 
 get '/' do
-  @users = User.all
+  # @users = User.all
   erb :login
 end
 
