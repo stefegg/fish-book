@@ -42,11 +42,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord!
-  bcrypt!
+  activerecord
+  bcrypt
   pg
-  rake!
-  sinatra-activerecord!
+  rake
+  sinatra-activerecord
   sqlite3
 
 BUNDLED WITH
