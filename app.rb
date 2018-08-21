@@ -1,11 +1,12 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 enable :sessions
-
+require 'active_record'
+ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
 
 set :public_folder, File.dirname(__FILE__) + '/publics'
 
-set :database, "sqlite3:fishbook.sqlite3"
+# set :database, "sqlite3:fishbook.sqlite3"
 
 get '/' do
   @users = User.all
