@@ -1,0 +1,23 @@
+<% if session[:user] == nil %>
+  <% redirect '/invalid' %>
+  <% elsif session[:user] != nil %>
+  <%end%>
+<nav class='nav'>
+<div>fishbook</div>
+<div><img src="/images/tuna1.png"></div>
+<div></div>
+<div>Welcome <%= session[:user].email %></div>
+<div><a href="/log_out"><button class="log-btn" type="submit">Log Out</button></a></div>
+</nav>
+<div class="head">
+<h1><%= session[:user].name%>'s Account Page</h1>
+
+</div>
+<section class="prof-cont">
+<div>
+  <h1>About <%= session[:user].name%></h1>
+  <p>Full Name: <%= session[:user].name %> <%= session[:user].last_name %>
+  <p>Birthday: <%= session[:user].bday %></p>
+</div>
+<div><h1><%= session[:user].name%>'s Posts</div>
+</section>
