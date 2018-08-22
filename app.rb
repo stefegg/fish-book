@@ -69,7 +69,7 @@ end
 post '/post' do
   user = User.find(session[:user].id)
   post = Post.new(
-    owner: user.name,
+    owner: user.email,
     title: params["title"],
     content: params["content"],
   )
@@ -90,8 +90,13 @@ end
 
 
 post "/settings" do
+    named = session[:user].email
     user = User.find(session[:user].id)
   if user.email == params[:email] && user.password == params[:password]
+    diePost = Post.where(owner: named)
+    diePost.each do |po|
+      po.destroy
+    end
     User.destroy(session[:user].id)
     session[:user] = nil
     redirect "/"
