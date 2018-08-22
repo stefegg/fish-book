@@ -11,6 +11,7 @@ class CreateUsersTable < ActiveRecord::Migration[5.2]
 
     create_table :posts do |o|
       o.string :owner
+      o.string :author
       o.string :title
       o.string :content
       o.timestamp :created_at

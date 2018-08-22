@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2018_08_21_172315) do
 
   create_table "posts", force: :cascade do |t|
     t.string "owner"
+    t.string "author"
     t.string "title"
     t.string "content"
     t.datetime "created_at"

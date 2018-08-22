@@ -15,6 +15,9 @@ get '/' do
 end
 
 get '/profile' do
+  @userposts = Post.select {
+  |o| o.owner == session[:user].email
+}
   erb :profile
 end
 
@@ -70,6 +73,7 @@ post '/post' do
   user = User.find(session[:user].id)
   post = Post.new(
     owner: user.email,
+    author: user.name,
     title: params["title"],
     content: params["content"],
   )
@@ -82,14 +86,19 @@ put "/settings" do
   user.update(
     name: params[:name],
     last_name: params[:last_name],
-    email: params[:email],
+    # email: params[:email],
     password: params[:password],
     image_url: params[:image_url])
     redirect "/profile"
 end
 
+get '/postdestroyer/:id' do
+  post_id = Post.find(params[:id])
+  post_id.destroy
+  redirect "/profile"
+end
 
-post "/settings" do
+post "/destroyer" do
     named = session[:user].email
     user = User.find(session[:user].id)
   if user.email == params[:email] && user.password == params[:password]

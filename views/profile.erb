@@ -21,12 +21,25 @@
   <p>Birthday: <%= session[:user].bday %></p>
     <p>E-mail: <%= session[:user].email %></p>
 </div>
-<div><h1><%= session[:user].name%>'s Posts
-  <p>Create a new post!</p>
+<div>
+  <h2>Create a new post!</h2>
   <form action="/post" method="POST">
   <input type="text" name="title" placeholder="Title" required><br>
   <input id="content" type="text" name="content" placeholder="What's on your mind?" required><br>
   <button type="submit">Submit!</button>
 </form>
+<h1><%= session[:user].name%>'s Posts</h1>
+<% @userposts.first(20).reverse.each do |o| o.created_at %>
+<div>
+  <h2><%= o.title %></h2>
+  <h2>By: <%= o.author %></h2>
+  <h2>At: <%= o.created_at %></h2>
+  <h2>Content:</h2>
+ <p><%=  o.content %></p>
+
+ <a href="/postdestroyer/<%= o.id %>"> <button> Delete this post.</button></a>
+</div>
+ <%end%>
+</div>
 </div>
 </section>

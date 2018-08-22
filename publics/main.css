@@ -151,7 +151,7 @@ a {
   grid-gap: 5%;
   margin: 0 5% 1% 5%;
   text-align: center;
-  border: solid 5px #f9ba3b;
+  /* border: solid 5px #f9ba3b; */
 }
 
 .profile-image {
@@ -160,5 +160,4 @@ a {
 
 .set-cont {
   text-align: center;
-
 }
