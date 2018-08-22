@@ -25,6 +25,13 @@ get '/invalid' do
   erb :invalid
 end
 
+get '/pfeed' do
+  @userposts = Post.select {
+  |o| o.owner == session[:user].email
+}
+  erb :pfeed
+end
+
 get '/signedup' do
   erb :signedup
 end
@@ -38,8 +45,7 @@ post '/signup' do
     last_name: params["last_name"],
     password: params["password"],
     bday: params["bday"],
-    # image_url: params["image_url"],
-  )
+    image_url: "g1.jpeg")
   user.save
   redirect "/signedup"
 end

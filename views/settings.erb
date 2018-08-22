@@ -17,30 +17,31 @@
       <input type="hidden" name="_method" value="PUT">
       <label>First Name: <input type="text" name="name" required></label><br>
       <label>Last Name: <input type="text" name="last_name" required></label><br>
-      <label>Password: <input type="text" name="password" required></label><br>
-      <!-- <label>Email: <input type="email" name="email" required></label><br> -->
+      <label>Password: <input type="password" name="password" required></label><br>
+      <input type="submit" value="Update" class="signup-btn">
     </form>
     <h1>Change your Profile Picture!</h1>
     <h2>Step 1 Upload a new Profile Pic</h2>
     <form action="/save_image" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="_method" value="PUT">
-      <input type="file" name="file">
-      <input type="submit" value="Upload image">
+      <input type="file" name="file" required>
+      <input type="submit" value="Upload image" class="signup-btn">
     </form>
     <h2>Step 2 - enter the filename with extension (case sensitive)</h2>
     <form action="/psettings" method="post">
       <input type="hidden" name="_method" value="PUT">
 
-    <label>Profile Picture Name (With file extension): <input type="text" name="image_url" placeholder="yourimage.filetype jpg png etc."></label><br>
-    <input type="submit" value="Update">
+    <label>Profile Picture Name (With file extension): <input type="text" name="image_url" placeholder="yourimage.filetype jpg png etc." required></label><br>
+    <input type="submit" value="Update" class="signup-btn">
   </form>
     <h1>Delete Your Account</h1>
-
+    <img src="/images/bfish.png">
+    <h1>Good luck out there on your own...</h1>
+    <h1>Enter your E-mail and Password to delete your account</h1>
+    <h1>This will also delete all of your posts!</h1>
     <form action="/destroyer" method="post">
       <input type="text" name="email" placeholder="Email" required><br>
       <input type="password" name="password"  placeholder="Password" required><br>
-      <input type="submit" value="Delete Account">
+      <input type="submit" value="Delete Account" class="signup-btn">
     </form>
-<img src="/images/bfish.png">
-<h1>Good luck out there on your own...</h1>
   </div>
