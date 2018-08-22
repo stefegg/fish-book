@@ -38,7 +38,7 @@ post '/signup' do
     last_name: params["last_name"],
     password: params["password"],
     bday: params["bday"],
-    image_url: params["image_url"]
+    # image_url: params["image_url"],
   )
   user.save
   redirect "/signedup"
@@ -50,6 +50,7 @@ given_password = params[:password]
 user = User.find_by(email: email)
 if user.password == given_password
 session[:user] = user
+# p user
 redirect '/profile'
 else
   redirect '/invalid'
@@ -62,7 +63,38 @@ get "/log_out" do
 end
 
 get "/settings" do
+  user = User.find(session[:user].id)
+  p user
     erb :settings
+end
+
+put "/settings" do
+  user = User.find(session[:user].id)
+  p user
+  user.update(
+    name: params[:name],
+    last_name: params[:last_name],
+    # email: params[:email],
+    password: params[:password],
+  )
+  redirect "/settings"
+end
+
+put "/psettings" do
+    user = User.find(session[:user].id)
+    user.update(
+      image_url: params[:image_url]
+    )
+    redirect "/settings"
+  end
+put '/save_image' do
+  user = User.find(session[:user].id)
+  @filename = params[:file][:filename]
+  file = params[:file][:tempfile]
+  File.open("./publics/images/#{@filename}", 'wb') do |f|
+    f.write(file.read)
+    redirect "/settings"
+end
 end
 get 'post' do
   @posts = Post.all
@@ -81,16 +113,6 @@ post '/post' do
   redirect '/profile'
 end
 
-put "/settings" do
-  user = session[:user]
-  user.update(
-    name: params[:name],
-    last_name: params[:last_name],
-    # email: params[:email],
-    password: params[:password],
-    image_url: params[:image_url])
-    redirect "/profile"
-end
 
 get '/postdestroyer/:id' do
   post_id = Post.find(params[:id])

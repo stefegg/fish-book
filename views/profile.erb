@@ -1,45 +1,66 @@
 <% if session[:user] == nil %>
   <% redirect '/invalid' %>
-  <% elsif session[:user] != nil %>
-  <%end%>
-<nav class='nav'>
-<div>fishbook</div>
-<div><img src="/images/tuna1.png"></div>
-<div><a href="/profile"><button class="log-btn" type="submit">Your Profile</button></a></div>
-<div>  <a href="/settings"><button class="log-btn">Profile Settings</button></a></div>
-<div><a href="/log_out"><button class="log-btn" type="submit">Log Out</button></a></div>
-</nav>
-<div class="head">
-<h1><%= session[:user].name%>'s Account Page</h1>
+    <% elsif session[:user] != nil %><%end%>
+    <nav class='nav'>
+      <div>fishbook</div>
+      <div><img src="/images/tuna1.png"></div>
+      <div>
+        <a href="/profile">
+          <button class="log-btn" type="submit">Your Profile</button>
+        </a>
+      </div>
+      <div>
+        <a href="/settings">
+          <button class="log-btn">Profile Settings</button>
+        </a>
+      </div>
+      <div>
+        <a href="/log_out">
+          <button class="log-btn" type="submit">Log Out</button>
+        </a>
+      </div>
+    </nav>
+    <div class="head">
+      <h1><%= session[:user].name%>'s Account Page</h1>
 
-</div>
-<section class="prof-cont">
-<div>
-  <h1>About <%= session[:user].name%></h1>
-  <img src="<%= session[:user].image_url %>" class="profile-image">
-  <p>Full Name: <%= session[:user].name %> <%= session[:user].last_name %>
-  <p>Birthday: <%= session[:user].bday %></p>
-    <p>E-mail: <%= session[:user].email %></p>
-</div>
-<div>
-  <h2>Create a new post!</h2>
-  <form action="/post" method="POST">
-  <input type="text" name="title" placeholder="Title" required><br>
-  <input id="content" type="text" name="content" placeholder="What's on your mind?" required><br>
-  <button type="submit">Submit!</button>
-</form>
-<h1><%= session[:user].name%>'s Posts</h1>
-<% @userposts.first(20).reverse.each do |o| o.created_at %>
-<div>
-  <h2><%= o.title %></h2>
-  <h2>By: <%= o.author %></h2>
-  <h2>At: <%= o.created_at %></h2>
-  <h2>Content:</h2>
- <p><%=  o.content %></p>
+    </div>
+    <section class="prof-cont">
+      <div>
+        <h1>About
+          <%= session[:user].name%></h1>
+        <img src="/images/<%= session[:user].image_url %>" class="profile-image">
+        <p>Full Name:
+          <%= session[:user].name %>
+          <%= session[:user].last_name %>
+          <p>Birthday:
+            <%= session[:user].bday %></p>
+          <p>E-mail:
+            <%= session[:user].email %></p>
+        </div>
+        <div>
+          <h1>Create a new post!</h1>
+          <form action="/post" method="POST">
+            <input type="text" name="title" placeholder="Title" required="required"><br>
+            <input id="content" type="text" name="content" placeholder="What's on your mind?" required="required"><br>
+            <button type="submit">Submit!</button>
+          </form>
+          <h1><%= session[:user].name%>'s Posts</h1>
+          <% @userposts.first(20).reverse.each do |o| o.created_at %>
+            <div>
+              <h2><%= o.title %></h2>
+              <h2>By:
+                <%= o.author %></h2>
+              <h2>At:
+                <%= o.created_at %></h2>
+              <h2>Content:</h2>
+              <p><%= o.content %></p>
 
- <a href="/postdestroyer/<%= o.id %>"> <button> Delete this post.</button></a>
-</div>
- <%end%>
-</div>
-</div>
-</section>
+              <a href="/postdestroyer/<%= o.id %>">
+                <button>
+                  Delete this post.</button>
+              </a>
+            </div>
+          <%end%>
+        </div>
+      </div>
+    </section>

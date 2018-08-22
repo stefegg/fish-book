@@ -16,14 +16,24 @@
     <form action="/settings" method="post">
       <input type="hidden" name="_method" value="PUT">
       <label>First Name: <input type="text" name="name" required></label><br>
-      <label>Last Name: <input type="text" name="last_name"required></label><br>
-      <label>Password: <input type="text" name="password"  required></label><br>
+      <label>Last Name: <input type="text" name="last_name" required></label><br>
+      <label>Password: <input type="text" name="password" required></label><br>
       <!-- <label>Email: <input type="email" name="email" required></label><br> -->
-      <label>Image URL: <input type="text" name="image_url" required></label><br>
-      <input type="submit" value="Update">
     </form>
+    <h1>Change your Profile Picture!</h1>
+    <h2>Step 1 Upload a new Profile Pic</h2>
+    <form action="/save_image" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_method" value="PUT">
+      <input type="file" name="file">
+      <input type="submit" value="Upload image">
+    </form>
+    <h2>Step 2 - enter the filename with extension (case sensitive)</h2>
+    <form action="/psettings" method="post">
+      <input type="hidden" name="_method" value="PUT">
 
-
+    <label>Profile Picture Name (With file extension): <input type="text" name="image_url" placeholder="yourimage.filetype jpg png etc."></label><br>
+    <input type="submit" value="Update">
+  </form>
     <h1>Delete Your Account</h1>
 
     <form action="/destroyer" method="post">
