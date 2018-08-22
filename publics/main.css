@@ -29,6 +29,7 @@ footer {
   background-color: #3a7df9;
   margin-bottom: 0;
   height: 10.5vh;
+  text-align: center;
 }
 
 a {
@@ -84,6 +85,7 @@ a {
   font-size: 2vh;
   margin-left: 5%;
   padding: 8px 8px;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .main-cont {
@@ -132,7 +134,7 @@ a {
 
 #invalid img {
   margin: 0 25%;
-  max-width: 50%;
+  max-width: 45%;
 }
 
 .head {
@@ -145,4 +147,14 @@ a {
   grid-gap: 5%;
   margin: 0 5% 1% 5%;
   text-align: center;
+  border: solid 5px #f9ba3b;
+}
+
+.profile-image {
+  max-width: 90%;
+}
+
+.set-cont {
+  text-align: center;
+
 }

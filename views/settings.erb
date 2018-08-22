@@ -1,0 +1,36 @@
+<% if session[:user] == nil %>
+  <% redirect '/invalid' %>
+  <% elsif session[:user] != nil %>
+  <%end%>
+<nav class='nav'>
+<div>fishbook</div>
+<div><img src="/images/tuna1.png"></div>
+<div><a href="/profile"><button class="log-btn" type="submit">Your Profile</button></a></div>
+
+<div>Welcome <%= session[:user].email %></div>
+<div><a href="/log_out"><button class="log-btn" type="submit">Log Out</button></a></div>
+</nav>
+<div class="set-cont">
+     <h1>Update Your Account - You Must Log Out & Back In To See Changes!</h1>
+
+    <form action="/settings" method="post">
+      <input type="hidden" name="_method" value="PUT">
+      <label>First Name: <input type="text" name="name" required></label><br>
+      <label>Last Name: <input type="text" name="last_name"required></label><br>
+      <label>Password: <input type="text" name="password"  required></label><br>
+      <label>Email: <input type="email" name="email" required></label><br>
+      <label>Image URL: <input type="text" name="image_url" required></label><br>
+      <input type="submit" value="Update">
+    </form>
+
+
+    <h1>Delete Your Account</h1>
+
+    <form action="/settings" method="post">
+      <input type="text" name="email" placeholder="Email" required><br>
+      <input type="password" name="password"  placeholder="Password" required><br>
+      <input type="submit" value="Delete Account">
+    </form>
+<img src="/images/bfish.png">
+<h1>Good luck out there on your own...</h1>
+  </div>

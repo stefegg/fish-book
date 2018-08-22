@@ -2,11 +2,12 @@ require 'sinatra'
 require 'sinatra/activerecord'
 enable :sessions
 require 'active_record'
-ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
+
+# ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
 
 set :public_folder, File.dirname(__FILE__) + '/publics'
 
-# set :database, "sqlite3:fishbook.sqlite3"
+set :database, "sqlite3:fishbook.sqlite3"
 
 get '/' do
   # @users = User.all
@@ -21,6 +22,11 @@ get '/invalid' do
   erb :invalid
 end
 
+get '/signedup' do
+  erb :signedup
+end
+
+
 post '/signup' do
   p params
   user = User.new(
@@ -28,10 +34,11 @@ post '/signup' do
     name: params["name"],
     last_name: params["last_name"],
     password: params["password"],
-    bday: params["bday"]
+    bday: params["bday"],
+    image_url: params["image_url"]
   )
   user.save
-  redirect "/"
+  redirect "/signedup"
 end
 
 post '/login' do
@@ -47,12 +54,50 @@ end
 end
 
 get "/log_out" do
-  if session[:user_id] != nil
-    @user = User.find(session[:user_id])
-  end
-  session[:user_id] = nil
+  session[:user] = nil
   redirect "/"
 end
 
+get "/settings" do
+    erb :settings
+end
+get 'post' do
+  @posts = Post.all
+  erb :post
+end
+
+post '/post' do
+  user = User.find(session[:user].id)
+  post = Post.new(
+    owner: user.name,
+    title: params["title"],
+    content: params["content"],
+  )
+  post.save
+  redirect '/profile'
+end
+
+put "/settings" do
+  user = session[:user]
+  user.update(
+    name: params[:name],
+    last_name: params[:last_name],
+    email: params[:email],
+    password: params[:password],
+    image_url: params[:image_url])
+    redirect "/profile"
+end
+
+
+post "/settings" do
+    user = User.find(session[:user].id)
+  if user.email == params[:email] && user.password == params[:password]
+    User.destroy(session[:user].id)
+    session[:user] = nil
+    redirect "/"
+  else
+    redirect "/settings"
+  end
+end
 
 require "./models"

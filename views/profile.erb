@@ -5,8 +5,8 @@
 <nav class='nav'>
 <div>fishbook</div>
 <div><img src="/images/tuna1.png"></div>
-<div></div>
-<div>Welcome <%= session[:user].email %></div>
+<div><a href="/profile"><button class="log-btn" type="submit">Your Profile</button></a></div>
+<div>  <a href="/settings"><button class="log-btn">Profile Settings</button></a></div>
 <div><a href="/log_out"><button class="log-btn" type="submit">Log Out</button></a></div>
 </nav>
 <div class="head">
@@ -16,8 +16,17 @@
 <section class="prof-cont">
 <div>
   <h1>About <%= session[:user].name%></h1>
+  <img src="<%= session[:user].image_url %>" class="profile-image">
   <p>Full Name: <%= session[:user].name %> <%= session[:user].last_name %>
   <p>Birthday: <%= session[:user].bday %></p>
+    <p>E-mail: <%= session[:user].email %></p>
 </div>
-<div><h1><%= session[:user].name%>'s Posts</div>
+<div><h1><%= session[:user].name%>'s Posts
+  <p>Create a new post!</p>
+  <form action="/post" method="POST">
+  <input type="text" name="title" placeholder="Title" required><br>
+  <input id="content" type="text" name="content" placeholder="What's on your mind?" required><br>
+  <button type="submit">Submit!</button>
+</form>
+</div>
 </section>
