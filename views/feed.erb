@@ -22,7 +22,7 @@
       </div>
     </nav>
     <h1 class="set-cont">Public Post Feed</h1>
-    <% @allposts.first(20).reverse.each do |lo| lo.created_at %>
+    <% @allposts.last(20).reverse.each do |lo| lo.created_at %>
       <div class="post-cont">
         <h2> <%= lo.title %></h2>
         <p>By:
