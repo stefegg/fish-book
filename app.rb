@@ -50,7 +50,7 @@ post '/signup' do
     last_name: params["last_name"],
     password: params["password"],
     bday: params["bday"],
-    image_url: "/publics/images/g1.jpeg")
+    image_url: "g1.jpeg")
   user.save
   redirect "/signedup"
 end
