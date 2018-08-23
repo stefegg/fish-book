@@ -168,6 +168,8 @@ a {
 
 .profile-image {
   max-width: 90%;
+  border: solid 5px #f9ba3b;
+  
 }
 
 .set-cont {

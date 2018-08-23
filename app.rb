@@ -32,6 +32,11 @@ get '/pfeed' do
   erb :pfeed
 end
 
+get '/feed' do
+  @allposts = Post.all
+  erb :feed
+end
+
 get '/signedup' do
   erb :signedup
 end

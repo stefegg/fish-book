@@ -1,0 +1,37 @@
+<% if session[:user] == nil %>
+  <% redirect '/invalid' %>
+    <% elsif session[:user] != nil %><%end%>
+    <nav class='nav'>
+      <div>fishbook</div>
+      <div><img src="/images/tuna1.png"></div>
+      <div>
+        <a href="/settings">
+          <button class="log-btn">Profile Settings</button>
+        </a>
+      </div>
+      <div>
+        <a href="/profile">
+          <button class="log-btn" type="submit">Your Profile</button>
+        </a>
+      </div>
+
+      <div>
+        <a href="/log_out">
+          <button class="log-btn" type="submit">Log Out</button>
+        </a>
+      </div>
+    </nav>
+    <h1 class="set-cont">Public Post Feed</h1>
+    <% @allposts.first(20).reverse.each do |lo| lo.created_at %>
+      <div class="post-cont">
+        <h2> <%= lo.title %></h2>
+        <p>By:
+          <%= lo.author %></p>
+
+        <p>Content: <%= lo.content %></p>
+        <p>Posted At:
+          <%= lo.created_at %></p>
+
+
+      </div>
+    <%end%>
