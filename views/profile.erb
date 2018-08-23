@@ -44,7 +44,7 @@
             <input id="content" type="text" name="content" placeholder="What's on your mind?" required="required"><br>
             <button type="submit" class="log-btn" >Submit!</button>
           </form>
-          <h1><%= session[:user].name%>'s Posts</h1>
+          <h1><%= session[:user].name%>'s Recent Posts</h1>
           <% @userposts.last(3).reverse.each do |o| o.created_at %>
             <div class="post-cont">
               <h2> <%= o.title %></h2>
